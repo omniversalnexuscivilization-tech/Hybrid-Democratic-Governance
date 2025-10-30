@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title data-i18n="title">DAO Village Council</title>
+  <link rel="stylesheet" href="dao.css" />
+  <link rel="stylesheet" href="css/top-header.css" />
+  <link rel="stylesheet" href="css/page-dao-council.css" />
+</head>
+<body>
+  <!-- Top Header -->
+  <header class="top-header" role="banner">
+    <div class="top-header__inner">
+      <a href="/" class="brand" aria-label="Home">
+        <span class="brand__logo" aria-hidden="true">◎</span>
+        <span class="brand__name" data-i18n="brand">DAO Village Council</span>
+      </a>
+
+      <nav class="utility-nav" aria-label="Utility navigation">
+        <label for="lang" class="visually-hidden" data-i18n="label.language">Language</label>
+        <select id="lang" class="lang-switcher" aria-controls="page" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="as">অসমীয়া</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="page" class="page" tabindex="-1">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <h1 id="hero-title" class="hero__title" data-i18n="hero.title">Decentralized, community-driven governance</h1>
+        <p class="hero__subtitle" data-i18n="hero.subtitle">
+          Transparent, democratic decision-making for students, parents, and teachers.
+        </p>
+        <div class="hero__cta">
+          <a href="#features" class="btn btn--light" data-i18n="hero.cta">Explore features</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="section" aria-labelledby="overview-title">
+      <div class="container">
+        <h2 id="overview-title" data-i18n="overview.title">Overview</h2>
+        <p data-i18n="overview.body">
+          The DAO Village Council blends local wisdom with blockchain-backed governance
+          to ensure fairness, transparency, and inclusivity in every decision.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <h2 id="features-title" data-i18n="features.title">Key features</h2>
+
+        <div class="feature-grid" role="list">
+          <article class="feature" role="listitem" aria-labelledby="f1-title">
+            <h3 id="f1-title" data-i18n="features.smartContracts.title">Smart contract–based voting and decisions</h3>
+            <p data-i18n="features.smartContracts.body">
+              Proposals are submitted digitally and executed via tamper-proof smart contracts.
+              Results are instant, transparent, and enforce council rules automatically.
+            </p>
+          </article>
+
+          <article class="feature" role="listitem" aria-labelledby="f2-title">
+            <h3 id="f2-title" data-i18n="features.multiStakeholder.title">Student, parent, teacher voting rights</h3>
+            <p data-i18n="features.multiStakeholder.body">
+              Clear voting rights for each group, configurable for equal or weighted voting through DAO rules.
+            </p>
+          </article>
+
+          <article class="feature" role="listitem" aria-labelledby="f3-title">
+            <h3 id="f3-title" data-i18n="features.funds.title">Transparent fund allocation ledger</h3>
+            <p data-i18n="features.funds.body">
+              Every donation, grant, and expense is logged on a public ledger for trust and accountability.
+            </p>
+          </article>
+
+          <article class="feature" role="listitem" aria-labelledby="f4-title">
+            <h3 id="f4-title" data-i18n="features.ai.title">AI-assisted consensus validation</h3>
+            <p data-i18n="features.ai.body">
+              AI reviews proposals for feasibility and fairness, highlighting conflicts or duplicates.
+              Final decisions remain with the community.
+            </p>
+          </article>
+
+          <article class="feature" role="listitem" aria-labelledby="f5-title">
+            <h3 id="f5-title" data-i18n="features.voting.title">Reputation-based and quadratic voting</h3>
+            <p data-i18n="features.voting.body">
+              Contributors earn reputation over time; quadratic voting ensures balanced outcomes by limiting dominance.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance model -->
+    <section class="section" aria-labelledby="model-title">
+      <div class="container">
+        <h2 id="model-title" data-i18n="model.title">Governance model</h2>
+        <ul class="bullets">
+          <li>
+            <strong data-i18n="bullets.label.proposals">Proposals:</strong>
+            <span data-i18n="bullets.proposals">
+              Any member can submit a proposal; offline sabha discussion + online DAO voting.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="bullets.label.voting">Voting:</strong>
+            <span data-i18n="bullets.voting">
+              Smart contracts enforce rules; supports equal, weighted, reputation, and quadratic voting.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="bullets.label.funds">Funds:</strong>
+            <span data-i18n="bullets.funds">
+              On-chain ledger records inflows/outflows; monthly reports auto-generated.
+            </span>
+          </li>
+          <li>
+            <strong data-i18n="bullets.label.audit">Audit:</strong>
+            <span data-i18n="bullets.audit">
+              Open records, community review, and rotating audit committees for oversight.
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--cta" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 id="cta-title" data-i18n="cta.title">Ready to pilot?</h2>
+      </div>
+      <div class="container grid-2">
+        <div>
+          <p data-i18n="cta.body">
+            Start with a library or water project. Run proposals and votes, publish a transparent fund ledger, and iterate.
+          </p>
+          <a href="#contact" class="btn btn--primary" data-i18n="cta.button">Start pilot</a>
+        </div>
+        <aside class="note" role="note">
+          <p data-i18n="cta.note">
+            Tip: Pair offline sabha notes with on-chain records to keep everyone included.
+          </p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> <span data-i18n="brand">DAO Village Council</span></p>
+    </div>
+  </footer>
+
+  <script src="i18n.js" defer></script>
+  <script src="dao.js" defer></script>
+</body>
+</html>
