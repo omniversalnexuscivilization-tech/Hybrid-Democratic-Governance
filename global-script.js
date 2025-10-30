@@ -1,89 +1,90 @@
-// Basic interactivity: nav toggle, modal, form (client-side), smooth scroll
-document.addEventListener('DOMContentLoaded', function () {
-  // year
-  document.getElementById('year').textContent = new Date().getFullYear();
+// Mobile Navigation Toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
 
-  // nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const navList = document.getElementById('navList');
-  navToggle && navToggle.addEventListener('click', () => {
-    const show = navList.classList.toggle('show');
-    navToggle.setAttribute('aria-expanded', show ? 'true' : 'false');
-  });
-
-  // smooth scroll for internal links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({behavior: 'smooth', block: 'start'});
-        if (navList.classList.contains('show')) navList.classList.remove('show');
-      }
-    });
-  });
-
-  // modal open/close
-  const modal = document.getElementById('modal');
-  const openApply = document.getElementById('openApply');
-  const applyBtn = document.getElementById('applyBtn');
-  const modalClose = document.getElementById('modalClose');
-  const modalCancel = document.getElementById('modalCancel');
-
-  function openModal() { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-  function closeModal() { modal.style.display = 'none'; document.body.style.overflow = ''; }
-
-  openApply && openApply.addEventListener('click', openModal);
-  applyBtn && applyBtn.addEventListener('click', openModal);
-  modalClose && modalClose.addEventListener('click', closeModal);
-  modalCancel && modalCancel.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-
-  // simple form handling: store to localStorage (placeholder)
-  const applyForm = document.getElementById('applyForm');
-  applyForm && applyForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const data = {
-      name: this.name.value.trim(),
-      email: this.email.value.trim(),
-      community: this.community.value.trim(),
-      role: this.role.value,
-      message: this.message.value.trim(),
-      ts: new Date().toISOString()
-    };
-    // save locally (for demo). Replace with POST to your server / Google Forms endpoint.
-    const all = JSON.parse(localStorage.getItem('onsnc_applications') || '[]');
-    all.push(data);
-    localStorage.setItem('onsnc_applications', JSON.stringify(all));
-    alert('धन्यवाद! आपका आवेदन सुरक्षित कर लिया गया है (demo)।');
-    this.reset();
-    closeModal();
-    console.log('Saved application:', data);
-  });
-
+hamburger.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  hamburger.innerHTML = navMenu.classList.contains('active') 
+    ? '<i class="fas fa-times"></i>' 
+    : '<i class="fas fa-bars"></i>';
 });
 
-// Smooth scroll for navigation
-document.querySelectorAll('nav a').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 20,
-        behavior: 'smooth'
-      });
+// Close mobile menu when clicking on a link
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('active');
+    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+  });
+});
+
+// Form Submission
+const joinForm = document.getElementById('join-form');
+const formMsg = document.getElementById('form-msg');
+
+joinForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // Simulate form submission
+  formMsg.textContent = "Thank you for your interest! We'll be in touch soon.";
+  formMsg.style.display = 'block';
+  
+  // Reset form
+  joinForm.reset();
+  
+  // Hide message after 5 seconds
+  setTimeout(() => {
+    formMsg.style.display = 'none';
+  }, 5000);
+});
+
+// Scroll animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.section').forEach(section => {
+  observer.observe(section);
+});
+
+// Active navigation link highlighting
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+  
+  let current = '';
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
+    
+    if (scrollY >= sectionTop - 200) {
+      current = section.getAttribute('id');
+    }
+  });
+  
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href').substring(1) === current) {
+      link.classList.add('active');
     }
   });
 });
 
-// Simple form message simulation
-const form = document.getElementById('join-form');
-const msg = document.getElementById('form-msg');
-if (form) {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    msg.textContent = "✅ Thank you! Your message has been recorded.";
-    form.reset();
+// Add active class to nav links
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('nav a').forEach(item => {
+      item.classList.remove('active');
+    });
+    this.classList.add('active');
   });
-}
+});
