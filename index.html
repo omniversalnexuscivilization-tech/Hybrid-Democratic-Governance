@@ -4,14 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ONSNC Pilot Charter | Hybrid Governance Council</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="global-style.css" />
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>ONSNC Pilot Charter</h1>
-      <p class="tagline">Hybrid Rotational–Anchor Governance for Future Communities</p>
-      <nav>
+    <div class="container header-container">
+      <div class="logo-container">
+        <div class="logo">
+          <i class="fas fa-globe-americas"></i>
+        </div>
+        <div class="logo-text">ONSNC</div>
+      </div>
+      
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav id="nav-menu">
         <a href="#about">About</a>
         <a href="#technology">Technology</a>
         <a href="#governance">Governance</a>
@@ -21,11 +31,19 @@
     </div>
   </header>
 
+  <section class="hero">
+    <div class="container">
+      <h1>ONSNC Pilot Charter</h1>
+      <p class="tagline">Hybrid Rotational–Anchor Governance for Future Communities</p>
+      <a href="#participate" class="cta-button">Join the Initiative</a>
+    </div>
+  </section>
+
   <main>
     <!-- About Section -->
-    <section id="about" class="section container">
+    <section id="about" class="section container fade-in">
       <h2>About the Charter</h2>
-      <p>
+      <p class="lead">
         The ONSNC Pilot Charter establishes a community-driven model called the
         <strong>Hybrid Rotational–Anchor Democratic Polity (HRADP)</strong>.
         It blends traditional wisdom, participatory democracy, and
@@ -34,26 +52,29 @@
     </section>
 
     <!-- Technology Section -->
-    <section id="technology" class="section container">
+    <section id="technology" class="section container fade-in">
       <h2>Technology Integration</h2>
       <div class="cards">
         <article class="card">
           <h3>Blockchain Ledger</h3>
           <p>Every decision, fund, and proposal is recorded on an open, verifiable ledger accessible to all citizens.</p>
+          <a href="#" class="explore-btn">Explore More</a>
         </article>
         <article class="card">
           <h3>AI Civic Advisor</h3>
           <p>Provides fact-checking, bias detection, and ethical tradeoff insights — supporting fair governance.</p>
+          <a href="#" class="explore-btn">Explore More</a>
         </article>
         <article class="card">
           <h3>Digital Twin Village</h3>
           <p>Simulates policy impacts (environmental, social, economic) before real-world implementation.</p>
+          <a href="#" class="explore-btn">Explore More</a>
         </article>
       </div>
     </section>
 
     <!-- Hybrid Governance Council Section -->
-    <section id="governance" class="section container">
+    <section id="governance" class="section container fade-in">
       <h2>Hybrid Governance Council</h2>
       <p class="lead">
         Participatory, transparent decision-making using DAO and blockchain-enabled frameworks for communities.
@@ -70,6 +91,7 @@
             <li>AI-assisted consensus validation</li>
             <li>Reputation-based and quadratic voting</li>
           </ul>
+          <a href="dao.html" class="explore-btn">Explore More</a>
         </article>
 
         <article class="card">
@@ -81,6 +103,7 @@
             <li>AI moderation and fairness check</li>
             <li>Publicly auditable blockchain logs</li>
           </ul>
+          <a href="#" class="explore-btn">Explore More</a>
         </article>
 
         <article class="card">
@@ -92,33 +115,49 @@
             <li>Ethics and audit sub-council</li>
             <li>Deliberation archive for research</li>
           </ul>
+          <a href="#" class="explore-btn">Explore More</a>
         </article>
       </div>
     </section>
 
     <!-- Pilot Section -->
-    <section id="pilot" class="section container">
+    <section id="pilot" class="section container fade-in">
       <h2>Pilot Implementation</h2>
-      <p>
+      <p class="lead">
         The HRADP model will be piloted in selected communities for 3 years, combining rotational councils, anchor elders, and
         AI-assisted transparency.
       </p>
-      <ul>
-        <li>Population: 500–5000 individuals</li>
-        <li>Duration: 3 years (renewable)</li>
-        <li>Evaluation: Bi-annual community assemblies</li>
-      </ul>
+      <div class="cards">
+        <article class="card">
+          <h3>Implementation Details</h3>
+          <ul>
+            <li>Population: 500–5000 individuals</li>
+            <li>Duration: 3 years (renewable)</li>
+            <li>Evaluation: Bi-annual community assemblies</li>
+            <li>Technology: Blockchain + AI integration</li>
+            <li>Governance: Hybrid rotational-anchor model</li>
+          </ul>
+          <a href="#" class="explore-btn">Explore More</a>
+        </article>
+      </div>
     </section>
 
     <!-- Participate Section -->
-    <section id="participate" class="section container">
+    <section id="participate" class="section container fade-in">
       <h2>Participate</h2>
-      <p>Join the pilot as a researcher, facilitator, or community leader.</p>
+      <p class="lead">Join the pilot as a researcher, facilitator, or community leader.</p>
       <form id="join-form">
         <input type="text" placeholder="Your Name" required />
         <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message / Proposal"></textarea>
-        <button type="submit">Submit</button>
+        <select required>
+          <option value="" disabled selected>Select Your Role</option>
+          <option value="researcher">Researcher</option>
+          <option value="facilitator">Facilitator</option>
+          <option value="community-leader">Community Leader</option>
+          <option value="other">Other</option>
+        </select>
+        <textarea placeholder="Your Message / Proposal" rows="5"></textarea>
+        <button type="submit">Submit Application</button>
       </form>
       <p id="form-msg" class="success"></p>
     </section>
@@ -126,7 +165,53 @@
 
   <footer>
     <div class="container">
-      <p>© 2025 ONSNC — Omniversal Nexus for Sapient Neo-Civilization</p>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>About ONSNC</h3>
+          <p>Omniversal Nexus for Sapient Neo-Civilization - Pioneering future governance models through technology and community collaboration.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#about">About Charter</a></li>
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#governance">Governance Model</a></li>
+            <li><a href="#pilot">Pilot Program</a></li>
+            <li><a href="#participate">Get Involved</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">White Paper</a></li>
+            <li><a href="#">Research Papers</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Community Forum</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> contact@onsnc.org</li>
+            <li><i class="fas fa-map-marker-alt"></i> Global Initiative</li>
+            <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 ONSNC — Omniversal Nexus for Sapient Neo-Civilization. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
