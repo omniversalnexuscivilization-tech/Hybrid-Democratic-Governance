@@ -1,128 +1,89 @@
-// ONC Education 5.0 - Global JavaScript
-// Header & Footer functionality
+// Basic interactivity: nav toggle, modal, form (client-side), smooth scroll
+document.addEventListener('DOMContentLoaded', function () {
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Navigation Toggle
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-    
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            // Toggle menu visibility
-            navMenu.classList.toggle('active');
-            
-            // Animate hamburger to X
-            const spans = navToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    }
+  // nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle && navToggle.addEventListener('click', () => {
+    const show = navList.classList.toggle('show');
+    navToggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+  });
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-            if (navMenu && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
+  // smooth scroll for internal links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({behavior: 'smooth', block: 'start'});
+        if (navList.classList.contains('show')) navList.classList.remove('show');
+      }
     });
+  });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (navMenu && navMenu.classList.contains('active')) {
-            const isClickInsideNav = navMenu.contains(event.target);
-            const isClickOnToggle = navToggle.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickOnToggle) {
-                navMenu.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        }
-    });
+  // modal open/close
+  const modal = document.getElementById('modal');
+  const openApply = document.getElementById('openApply');
+  const applyBtn = document.getElementById('applyBtn');
+  const modalClose = document.getElementById('modalClose');
+  const modalCancel = document.getElementById('modalCancel');
 
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    if (navbar) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    }
+  function openModal() { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  function closeModal() { modal.style.display = 'none'; document.body.style.overflow = ''; }
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Close mobile menu if open
-                if (navMenu && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    const spans = navToggle.querySelectorAll('span');
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                }
-                
-                // Smooth scroll to target
-                const headerHeight = navbar ? navbar.offsetHeight : 0;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+  openApply && openApply.addEventListener('click', openModal);
+  applyBtn && applyBtn.addEventListener('click', openModal);
+  modalClose && modalClose.addEventListener('click', closeModal);
+  modalCancel && modalCancel.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    // Donate button functionality
-    const donateBtn = document.querySelector('.donate-btn');
-    if (donateBtn) {
-        donateBtn.addEventListener('click', function() {
-            // You can redirect to a donation page or show a modal
-            alert('Thank you for your interest in donating! We will redirect you to our donation page.');
-            // window.location.href = 'donate.html';
-        });
-    }
+  // simple form handling: store to localStorage (placeholder)
+  const applyForm = document.getElementById('applyForm');
+  applyForm && applyForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const data = {
+      name: this.name.value.trim(),
+      email: this.email.value.trim(),
+      community: this.community.value.trim(),
+      role: this.role.value,
+      message: this.message.value.trim(),
+      ts: new Date().toISOString()
+    };
+    // save locally (for demo). Replace with POST to your server / Google Forms endpoint.
+    const all = JSON.parse(localStorage.getItem('onsnc_applications') || '[]');
+    all.push(data);
+    localStorage.setItem('onsnc_applications', JSON.stringify(all));
+    alert('धन्यवाद! आपका आवेदन सुरक्षित कर लिया गया है (demo)।');
+    this.reset();
+    closeModal();
+    console.log('Saved application:', data);
+  });
 
-    // Back to top button
-    const backToTopBtn = document.getElementById('backToTop');
-    if (backToTopBtn) {
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-        
-        backToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
 });
+
+// Smooth scroll for navigation
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 20,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Simple form message simulation
+const form = document.getElementById('join-form');
+const msg = document.getElementById('form-msg');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    msg.textContent = "✅ Thank you! Your message has been recorded.";
+    form.reset();
+  });
+}
